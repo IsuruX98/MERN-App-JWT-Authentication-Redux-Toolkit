@@ -1,7 +1,21 @@
 import express from "express";
 const router = express.Router();
-import { authUser } from "../controllers/userController.js";
+import {
+  authUser,
+  registerUser,
+  logoutUser,
+  getUserProfile,
+  updateUserProfile,
+  deleteUserProfile,
+} from "../controllers/userController.js";
 
-router.post('/auth',authUser)
+router.post("/", registerUser);
+router.post("/auth", authUser);
+router.post("/logout", logoutUser);
+router
+  .route("/profile")
+  .get(getUserProfile)
+  .put(updateUserProfile)
+  .delete(deleteUserProfile);
 
 export default router;
